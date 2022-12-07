@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>printOrderTotal</title>
+</head>
+<body>
+Open console, please
+<script>
+  function printOrderTotal(responseString) {
+      const responseJSON = JSON.parse(responseString);
+      if(!Array.isArray(responseJSON)){
+        return console.log('parsed response argument must be iterable array');
+      }
+      let orderSubtotal = 0;
+      responseJSON.forEach(function(item){
+          if (item.price === undefined){
+              item.price = 0;
+          }
+          orderSubtotal += item.price;
+      });
+   console.log('Стоимость заказа: ' + (orderSubtotal === 0? 'Бесплатно': orderSubtotal + ' руб.'));
+}
+  const responseString = JSON.stringify([
+      {price:10, name: "Mouse"},
+      {price:3, name: "Pen"},
+      {name: "Something without price"}
+  ]);
+  console.log(responseString);
+  printOrderTotal(responseString);
+
+  const gift = JSON.stringify([
+      {name: "Mouse"},
+      {name: "Pen"}
+  ]);
+  console.log(gift);
+  printOrderTotal(gift);
+
+  const notArray = JSON.stringify({Price: 12});
+  console.log(notArray);
+  printOrderTotal(notArray);
+
+</script>
+
+</body>
+</html>

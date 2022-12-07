@@ -89,8 +89,6 @@ FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 from users left join orders o on users.id = o.user_id
 group by users.id');
                     print_r($result->fetch_all(MYSQLI_ASSOC));
-
-
                 }
             }
         }
