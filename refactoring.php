@@ -25,7 +25,7 @@ function getQuestionsWithUsersByCategoryId(mysqli $connection, int $categoryId =
     $result = [];
     try {
         if ($categoryId < 1) {
-            throw new InvalidArgumentException('Индекс категории должен быть натуральным чмслом');
+            throw new InvalidArgumentException('Индекс категории должен быть натуральным числом');
         }
         $query = 'SELECT questions.*, users.name, users.gender FROM questions 
     LEFT JOIN users ON questions.user_id=users.id WHERE catalog_id=?';
